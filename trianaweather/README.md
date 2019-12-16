@@ -26,6 +26,13 @@ Proyecto sobre la gestión de datos meteorologicos.
 ***
 
 
+### Distribución del trabajo
+La distribución del trabajo de este proyecto se ha plasmado en este documento:
+* [Ver documento](https://docs.google.com/spreadsheets/d/1j3si2t2xRK7bHqjTtvCvvOnNkA03Dm6Ygwtb4CW-mvQ/edit?usp=sharing "Documento de la distribución del trabajo")
+
+***
+
+
 #### Usar la ApiRest:
 * Importar el proyecto en VSC abrir un nuevo terminal y ejecutar `npm run start`
 * Se arranca en el puerto `localhost:3000`

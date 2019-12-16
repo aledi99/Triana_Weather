@@ -1,0 +1,14 @@
+'use strict'
+
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const mDataSchema = new mongoose.Schema({
+    latitude: {type: Number},
+    longitude: {type: Number},
+    name: { type: String},
+    registed_by: { type: Schema.Types.ObjectId, ref: 'User' },
+    maitenanced_by: { type: Schema.Types.ObjectId, ref: 'User' }
+});
+
+module.exports = mongoose.model('MeteorologicData', mDataSchema);
