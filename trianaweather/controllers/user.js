@@ -24,7 +24,7 @@ let controller = {
                     username: req.body.username,
                     email: req.body.email,
                     fullname: req.body.fullname,
-                    roles: ['USER'],
+                    roles: 'USER',
                     password: hash,
                     stations_registered: [],
                     stations_maitenancing: []
