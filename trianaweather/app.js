@@ -13,6 +13,7 @@ const authMiddleware = require('./middleware/auth');
 
 const User = require('./models/user');
 const user_routes = require('./routes/users')
+const meteorologic_data_routes = require('./routes/meteorologic_data')
 
 require('dotenv').config();
 
@@ -56,6 +57,8 @@ app.use(cookieParser())
 app.use(passport.initialize())
 
 app.use('/api/', user_routes);
+app.use('/api/', meteorologic_data_routes);
+
 app.use(authMiddleware.errorHandler);
 app.use(authMiddleware.notFoundHandler);
 

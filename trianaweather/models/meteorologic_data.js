@@ -8,7 +8,8 @@ const mDataSchema = new mongoose.Schema({
     longitude: {type: Number},
     name: { type: String},
     registed_by: { type: Schema.Types.ObjectId, ref: 'User' },
-    maitenanced_by: { type: Schema.Types.ObjectId, ref: 'User' }
+    maitenanced_by: { type: Schema.Types.ObjectId, ref: 'User' },
+    station: { type: Schema.Types.ObjectId, ref: 'MeteorologicStation' }
 });
 
 module.exports = mongoose.model('MeteorologicData', mDataSchema);
