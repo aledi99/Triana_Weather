@@ -24,20 +24,22 @@ let controller = {
                     username: req.body.username,
                     email: req.body.email,
                     fullname: req.body.fullname,
-                    roles: ['USER'],
+                    roles: 'USER',
                     password: hash,
                     stations_registered: [],
                     stations_maitenancing: []
                 });
 
                 user.save((err, user) => {
+                    console.log(user);
+                    
                     if (err) next(new error_types.Error400(err.message));
-                    res.status(201).json(
-                        user.id,
-                        user.fullname,
-                        user.username,
-                        user.email
-                        );
+                    res.status(201).json({
+                        id : user.id,
+                        fullname : user.fullname,
+                        username : user.username,
+                        email : user.email
+                    });
                 });
             }
         })
@@ -60,6 +62,21 @@ let controller = {
                 });
             }
         })(req, res)
+    },
+    getUsers : async (req, res, next) => {
+        console.log(req.user)
+
+        try {
+            let result = null;
+            if (req.user.roles == "ADMIN") {
+                result = await User.find().exec();
+            }else{
+                res.send(401, "No tienes autorización")
+            }
+            res.status(200).json(result);
+        } catch (error) {
+            res.send(500, error.message);
+        }
     }
 
 
