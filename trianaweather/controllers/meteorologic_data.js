@@ -33,7 +33,7 @@ module.exports = {
         });
     },
     getDataById: (req, res) => {
-        MeteorologicData.findOne({"_id": req.params.id}, (err, data) => {
+        /* MeteorologicData.findOne({"_id": req.params.id}, (err, data) => {
             if(err) res.send(500, err.message);
             User.populate(data, {path: "registed_by"},(err, data) =>{
                 if(err) res.send(500, err.message);
@@ -45,7 +45,13 @@ module.exports = {
                     });
                 });
             });
-        });
+        }); */
+        MeteorologicData.findOne({"_id": req.params.id})
+            .then(d => d.populate('registed_by', {fullname: 1, email: 1}).execPopulate())
+            .then(d => d.populate('maitenanced_by', {fullname: 1, email: 1}).execPopulate())
+            .then(d => d.populate('station').execPopulate())
+            .then(d => res.status(200).json(d))
+            .catch( err => res.send(500, err.message));
     },
     getDataByStationId: (req, res) => {
         MeteorologicData.find({"station": req.params.id}, (err, data) => {
