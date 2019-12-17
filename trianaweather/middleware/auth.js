@@ -2,7 +2,7 @@
 
 const passport = require('passport');
 const error_types = require('../controllers/error_types');
-
+/*
 function ensureAuthenticatedWithRole(role, req, res, next) {
     passport.authenticate('jwt', {session: false}, (err, user, info)=>{
         if(info){ return next(new error_types.Error401(info.message)); }
@@ -23,7 +23,7 @@ function ensureAuthenticatedWithRole(role, req, res, next) {
         next();
     })(req, res, next);
 }
-
+*/
 let middlewares = {
     
     ensureAuthenticated: (req,res,next)=>{
@@ -38,12 +38,12 @@ let middlewares = {
             next();
         })(req, res, next);
     },
-
+/*
     ensureAuthenticatedAdmin: (req, res, next) => {
 
         ensureAuthenticatedWithRole(req.roles, req, res, next);
     },
-
+*/
     errorHandler: (error, req, res, next) => {
         if(error instanceof error_types.InfoError)
             res.status(200).json({error: error.message});

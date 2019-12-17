@@ -12,7 +12,7 @@ let middlewares = {
             next();
             (req, res, next);
         } else {
-            return next(new error_types.Error403("You are not allowed to access."));
+            return res.send(403,"No tienes autorización");
         }
     }
 }
