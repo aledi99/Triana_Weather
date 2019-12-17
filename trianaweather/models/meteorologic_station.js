@@ -9,7 +9,11 @@ const mStationSchema = new mongoose.Schema({
     temperature: {type: Number},
     humidity: {type: Number},
     air_quality: {type: Number},
-    pressure: {type: Number}
+    pressure: {type: Number},
+    registed_at: {type: Date, default: Date.now},
+    registed_by: { type: Schema.Types.ObjectId, ref: 'User' },
+    maitenanced_by: { type: Schema.Types.ObjectId, ref: 'User' }
+
 });
 
 module.exports = mongoose.model('MeteorologicStation', mStationSchema);
