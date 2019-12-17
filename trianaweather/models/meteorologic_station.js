@@ -11,8 +11,8 @@ const mStationSchema = new mongoose.Schema({
     air_quality: {type: Number},
     pressure: {type: Number},
     registed_at: {type: Date, default: Date.now},
-    registed_by: { type: Schema.Types.ObjectId, ref: 'User' },
-    maitenanced_by: { type: Schema.Types.ObjectId, ref: 'User' }
+    registed_by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    maitenanced_by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 
 });
 
