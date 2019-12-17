@@ -57,7 +57,7 @@ app.use(cookieParser())
 app.use(passport.initialize())
 
 app.use('/api/', user_routes);
-app.use('/api/', meteorologic_data_routes);
+//app.use('/api/', meteorologic_data_routes);
 
 app.use(authMiddleware.errorHandler);
 app.use(authMiddleware.notFoundHandler);
