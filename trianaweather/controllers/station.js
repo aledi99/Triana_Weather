@@ -18,12 +18,12 @@ module.exports = {
             maitenanced_by: req.user
         });
 
-        station.save((err, station) => {
-            if (err) res.send(500, err.message);
-            res.status(201).json(station);
-        })
+        station.save()
+               .then(s => s.populate('registed_by').execPopulate())
+               .then(s => s.populate('maintenanced_by').execPopulate())
+               .then(s => res.status(201).json(s))
+               .catch(err => res.send(500).json(err.message));
     },
-
     getStation: async (req, res) => {
         try {
             let result = null;
