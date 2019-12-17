@@ -9,6 +9,6 @@ const stationController = require('../controllers/station')
 
 router.post('/stations',authMiddleware.ensureAuthenticated, stationController.newStation);
 router.delete('/stations/:id',authMiddleware.ensureAuthenticated, managerMiddleware.ensureRoleManager, stationController.delStation);
-router.put('/stations/:id' ,stationController.updateStation);
+router.put('/stations/:id' ,authMiddleware.ensureAuthenticated, managerMiddleware.ensureRoleManager,stationController.updateStation);
 
 module.exports = router
