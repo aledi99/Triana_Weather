@@ -2,7 +2,6 @@
 const MeteorologicStation = require('../models/meteorologic_station');
 const error_types = require('./error_types');
 const _ = require('lodash');
-const MeteorologicStation = require('../models/meteorologic_station');
 
 module.exports = {
 
@@ -19,28 +18,20 @@ module.exports = {
             maitenanced_by: req.user
         });
         station.save()
-            .then(s => s.populate('registed_by', {fullname:1, email: 1}).execPopulate())
-            .then(s => s.populate('maintenanced_by', {fullname:1, email: 1}).execPopulate())
+            .then(s => s.populate('registed_by', { fullname: 1, email: 1 }).execPopulate())
+            .then(s => s.populate('maintenanced_by', { fullname: 1, email: 1 }).execPopulate())
             .then(s => res.status(201).json(s))
             .catch(err => res.send(500).json(err.message));
     },
-    getStation: async (req, res) => {
-        try {
-            let result = null;
-
-            if (req.user.roles == "MANAGER") {
-                result = await MeteorologicStation.find()
-                .populate('registed_by', {fullname:1, email: 1})
-                .populate('maintenanced_by', {fullname:1, email: 1})
-                .exec();
-            } else {
-                res.send(401, "No tienes autorización")
-            }
-            res.status(200).json(result);
-        } catch (error) {
-            res.send(500, error.message);
-        }
+    getStation: (req, res) => {
+        MeteorologicStation.find()
+            .populate('registed_by', { fullname: 1, email: 1 })
+            .populate('maintenanced_by', { fullname: 1, email: 1 })
+            .exec()
+            .then(result => res.status(200).json(result))
+            .catch(error => res.status(500).send(error.message));
     },
+
     delStation: (req, res) => {
         MeteorologicStation.findByIdAndDelete(req.params.id)
             .exec()
@@ -76,7 +67,7 @@ module.exports = {
                             humidity: x.humidity,
                             air_quality: x.air_quality,
                             pressure: x.pressure,
-                            registed_name : x.registed_by.fullname,
+                            registed_name: x.registed_by.fullname,
                             registed_email: x.registed_by.email,
                             maitenanced_name: x.maitenanced_by.fullname,
                             maitenanced_email: x.maitenanced_by.email

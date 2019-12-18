@@ -15,44 +15,63 @@ module.exports = {
             station: req.body.station
         });
         await meteorologicData.save()
-            .then(d => d.populate('registed_by', {fullname: 1, email: 1}).execPopulate())
-            .then(d => d.populate('maitenanced_by', {fullname: 1, email: 1}).execPopulate())
+            .then(d => d.populate('registed_by', { fullname: 1, email: 1 }).execPopulate())
+            .then(d => d.populate('maitenanced_by', { fullname: 1, email: 1 }).execPopulate())
             .then(d => d.populate('station').execPopulate())
             .then(d => res.status(201).json(d))
-            .catch( err => res.send(500, err.message));
+            .catch(err => res.send(500, err.message));
     },
     getDataById: (req, res) => {
         MeteorologicData.findById(req.params.id)
             .exec()
-            .then(d => d.populate('registed_by', {fullname: 1, email: 1}).execPopulate())
-            .then(d => d.populate('maitenanced_by', {fullname: 1, email: 1}).execPopulate())
+            .then(d => d.populate('registed_by', { fullname: 1, email: 1 }).execPopulate())
+            .then(d => d.populate('maitenanced_by', { fullname: 1, email: 1 }).execPopulate())
             .then(d => d.populate('station').execPopulate())
             .then(d => res.status(200).json(d))
-            .catch( err => res.status(500).send(err.message));
+            .catch(err => res.status(500).send(err.message));
     },
     getDataByStationId: (req, res) => {
-        MeteorologicData.find({"station": req.params.id})
-            .populate('registed_by', {fullname: 1, email: 1})
-            .populate('maitenanced_by', {fullname: 1, email: 1})
+        MeteorologicData.find({ "station": req.params.id })
+            .populate('registed_by', { fullname: 1, email: 1 })
+            .populate('maitenanced_by', { fullname: 1, email: 1 })
             .populate('station')
             .exec()
             .then(d => res.status(200).json(d))
-            .catch( err => res.status(500).send(err.message));
+            .catch(err => res.status(500).send(err.message));
     },
     getDataFromStationFromDate1ToDate2: (req, res) => {
-        MeteorologicData.find({"station": req.params.id, "registed_at": {
-            $gte: req.params.from,
-            $lt: req.params.to
-            }})
-            .populate('registed_by', {fullname: 1, email: 1})
-            .populate('maitenanced_by', {fullname: 1, email: 1})
+        MeteorologicData.find({
+            "station": req.params.id, "registed_at": {
+                $gte: req.params.from,
+                $lt: req.params.to
+            }
+        })
+            .populate('registed_by', { fullname: 1, email: 1 })
+            .populate('maitenanced_by', { fullname: 1, email: 1 })
             .populate('station')
             .exec()
             .then(d => res.status(200).json(d))
-            .catch( err => res.status(500).send(err.message));
+            .catch(err => res.status(500).send(err.message));
     },
     getDataFromToday: (req, res) => {
-        //TODO ALEJANDRO
+        MeteorologicData.find({ "registered_at": Date.now })
+            .populate('registed_by', { fullname: 1, email: 1 })
+            .populate('maitenanced_by', { fullname: 1, email: 1 })
+            .populate('station')
+            .exec()
+            .then(d => res.status(200).json(d))
+            .catch(err => res.status(500).send(err.message));
+    },
+    getDataFromTwoDates: (req, res) => {
+        MeteorologicData.find({
+            "registed_at": { $gte: req.params.from, $lt: req.params.to}
+        })
+            .populate('registed_by', { fullname: 1, email: 1 })
+            .populate('maitenanced_by', { fullname: 1, email: 1 })
+            .populate('station')
+            .exec()
+            .then(d => res.status(200).json(d))
+            .catch(err => res.status(500).send(err.message));
     }
 
 }

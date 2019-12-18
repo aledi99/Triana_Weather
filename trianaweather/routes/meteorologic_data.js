@@ -12,5 +12,6 @@ router.get('/weather/:id', authMiddleware.ensureAuthenticated, mDataController.g
 router.get('/stations/:id/weather/', authMiddleware.ensureAuthenticated, mDataController.getDataByStationId);
 router.get('/stations/:id/weather/from/:from/to/:to', authMiddleware.ensureAuthenticated, mDataController.getDataByStationId);
 router.get('/weather/today', authMiddleware.ensureAuthenticated, mDataController.getDataFromToday);
+router.get('/weather/from/:from/to/:to', authMiddleware.ensureAuthenticated, mDataController.getDataFromTwoDates);
 
 module.exports = router

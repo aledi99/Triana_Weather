@@ -10,7 +10,6 @@ const LocalStrategy = require('passport-local').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const bcrypt = require('bcryptjs');
 const authMiddleware = require('./middleware/auth');
-const station_routes = require('./routes/station');
 
 const User = require('./models/user');
 const user_routes = require('./routes/users')
