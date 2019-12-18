@@ -10,6 +10,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const bcrypt = require('bcryptjs');
 const authMiddleware = require('./middleware/auth');
+const station_routes = require('./routes/station');
 
 const User = require('./models/user');
 const user_routes = require('./routes/users')
@@ -57,6 +58,7 @@ app.use(cookieParser())
 app.use(passport.initialize())
 
 app.use('/api/', user_routes);
+app.use('/api/', station_routes);
 //app.use('/api/', meteorologic_data_routes);
 
 app.use(authMiddleware.errorHandler);

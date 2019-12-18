@@ -1,2 +1,11 @@
 'use strict'
 
+const express = require('express')
+const router = express.Router()
+
+const authMiddleware = require('../middleware/auth');
+const stationController = require('../controllers/station')
+
+router.post('/stations',authMiddleware.ensureAuthenticated, stationController.newStation);
+
+module.exports = router

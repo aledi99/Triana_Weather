@@ -1,5 +1,5 @@
 'use strict'
-
+const MeteorologicStation = require('../models/meteorologic_station');
 const error_types = require('./error_types');
 const _ = require('lodash');
 
