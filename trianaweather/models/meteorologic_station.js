@@ -1,19 +1,15 @@
 'use strict'
 
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const mStationSchema = new mongoose.Schema({
-    rain: {type: Number},
-    wind_speed: {type: Number},
-    wind_direction: {type: Number},
-    temperature: {type: Number},
-    humidity: {type: Number},
-    air_quality: {type: Number},
-    pressure: {type: Number},
+    latitude: {type: Number},
+    longitude: {type: Number},
+    name: { type: String},
     registed_at: {type: Date, default: Date.now},
-    registed_by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    maitenanced_by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
-
+    registed_by: { type: Schema.Types.ObjectId, ref: 'User' },
+    maitenanced_by: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
 module.exports = mongoose.model('MeteorologicStation', mStationSchema);

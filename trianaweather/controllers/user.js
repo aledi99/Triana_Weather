@@ -5,13 +5,6 @@ const passport  = require('passport');
 const jwt       = require('jsonwebtoken');
 const error_types = require('./error_types');
 const User = require('../models/user');
-/* router.post('/login', UserController.login);
-router.post('/register', UserController.register);
-router.get('/users', authMiddleware, UserController.getUsers); 
-login
-register
-getUsers
-*/
 
 let controller = {
     register: (req, res, next) => {
@@ -76,9 +69,6 @@ let controller = {
             res.send(500, error.message);
         }
     }
-
-
-
 
 }
 
