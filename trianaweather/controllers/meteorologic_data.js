@@ -18,7 +18,7 @@ module.exports = {
             .then(d => d.populate('registed_by', {fullname: 1, email: 1}).execPopulate())
             .then(d => d.populate('maitenanced_by', {fullname: 1, email: 1}).execPopulate())
             .then(d => d.populate('station').execPopulate())
-            .then(d => res.status(200).json(d))
+            .then(d => res.status(201).json(d))
             .catch( err => res.send(500, err.message));
     },
     getDataById: (req, res) => {
