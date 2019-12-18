@@ -11,5 +11,6 @@ router.get('/stations', authMiddleware.ensureAuthenticated, managerMiddleware.en
 router.post('/stations', authMiddleware.ensureAuthenticated, managerMiddleware.ensureRoleManager, stationController.newStation);
 router.delete('/stations/:id',authMiddleware.ensureAuthenticated, managerMiddleware.ensureRoleManager, stationController.delStation);
 router.put('/stations/:id' ,authMiddleware.ensureAuthenticated, managerMiddleware.ensureRoleManager,stationController.updateStation);
+router.get('/stations/:id', authMiddleware.ensureAuthenticated, managerMiddleware.ensureRoleManager, stationController.getStation);
 
 module.exports = router

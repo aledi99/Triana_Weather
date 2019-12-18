@@ -1,7 +1,5 @@
 'use strict'
 
-const error_types = require('../controllers/error_types');
-
 let middlewares = {
     
     ensureRolAdmin: (req,res,next)=>{
@@ -9,7 +7,7 @@ let middlewares = {
             next();
             (req, res, next);
         } else {
-            return res.send(403,"No tienes autorización");
+            return res.send(403,"You are not allowed to access.");
         }
     }
 }

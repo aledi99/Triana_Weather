@@ -1,21 +1,16 @@
 'use strict'
+
 const MeteorologicStation = require('../models/meteorologic_station');
-const error_types = require('./error_types');
-const _ = require('lodash');
 
 module.exports = {
 
     newStation: (req, res) => {
         let station = new MeteorologicStation({
-            rain: req.body.rain,
-            wind_speed: req.body.wind_speed,
-            wind_direction: req.body.wind_direction,
-            temperature: req.body.temperature,
-            humidity: req.body.humidity,
-            air_quality: req.body.air_quality,
-            pressure: req.body.pressure,
-            registed_by: req.user,
-            maitenanced_by: req.user
+            latitude: req.body.latitude,
+            longitude: req.body.longitude,
+            name: req.body.name,
+            registed_by: req.user._id,
+            maitenanced_by: req.user._id
         });
         station.save()
             .then(s => s.populate('registed_by', { fullname: 1, email: 1 }).execPopulate())
@@ -42,13 +37,9 @@ module.exports = {
         MeteorologicStation.findByIdAndUpdate(req.params.id,
             {
                 $set: {
-                    rain: req.body.rain,
-                    wind_speed: req.body.wind_speed,
-                    wind_direction: req.body.wind_direction,
-                    temperature: req.body.temperature,
-                    humidity: req.body.humidity,
-                    air_quality: req.body.air_quality,
-                    pressure: req.body.pressure,
+                    latitude: req.body.latitude,
+                    longitude: req.body.longitude,
+                    name: req.body.name,
                 }
             }, { new: true }, (err, station) => {
                 if (station == null) {
@@ -60,13 +51,9 @@ module.exports = {
                         .then(x => x.populate('registed_by').execPopulate())
                         .then(x => x.populate('maitenanced_by').execPopulate())
                         .then(x => res.status(200).json({
-                            rain: x.rain,
-                            wind_speed: x.wind_speed,
-                            wind_direction: x.wind_direction,
-                            temperature: x.temperature,
-                            humidity: x.humidity,
-                            air_quality: x.air_quality,
-                            pressure: x.pressure,
+                            latitude: x.latitude,
+                            longitude: x.longitude,
+                            name: x.name,
                             registed_name: x.registed_by.fullname,
                             registed_email: x.registed_by.email,
                             maitenanced_name: x.maitenanced_by.fullname,
@@ -75,5 +62,13 @@ module.exports = {
                         .catch(err => res.send(500).json(err.message))
                 }
             });
+    },
+    getStationById: (req, res) => {
+        MeteorologicStation.findById(req.params.id)
+            .exec()
+            .then(d => d.populate('registed_by', { fullname: 1, email: 1 }).execPopulate())
+            .then(d => d.populate('maitenanced_by', { fullname: 1, email: 1 }).execPopulate())
+            .then(d => res.status(200).json(d))
+            .catch(err => res.status(500).send(err.message));
     }
 }
