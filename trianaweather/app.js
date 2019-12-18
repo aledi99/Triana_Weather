@@ -14,6 +14,7 @@ const station_routes = require('./routes/station');
 
 const User = require('./models/user');
 const user_routes = require('./routes/users')
+const station_routes = require('./routes/station')
 const meteorologic_data_routes = require('./routes/meteorologic_data')
 
 require('dotenv').config();

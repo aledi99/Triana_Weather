@@ -30,11 +30,9 @@ let controller = {
                     stations_maitenancing: []
                 });
 
-                user.save((err, user) => {
-                    console.log(user);
-                    
+                user.save((err, user) => {                    
                     if (err) next(new error_types.Error400(err.message));
-                    res.status(201).json({
+                    res.status(201).json({  
                         id : user.id,
                         fullname : user.fullname,
                         username : user.username,
