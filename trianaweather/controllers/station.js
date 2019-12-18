@@ -19,8 +19,8 @@ module.exports = {
             maitenanced_by: req.user
         });
         station.save()
-            .then(s => s.populate('registed_by').execPopulate())
-            .then(s => s.populate('maintenanced_by').execPopulate())
+            .then(s => s.populate('registed_by', {fullname:1, email: 1}).execPopulate())
+            .then(s => s.populate('maintenanced_by', {fullname:1, email: 1}).execPopulate())
             .then(s => res.status(201).json(s))
             .catch(err => res.send(500).json(err.message));
     },
@@ -29,7 +29,10 @@ module.exports = {
             let result = null;
 
             if (req.user.roles == "MANAGER") {
-                result = await MeteorologicStation.find().exec();
+                result = await MeteorologicStation.find()
+                .populate('registed_by', {fullname:1, email: 1})
+                .populate('maintenanced_by', {fullname:1, email: 1})
+                .exec();
             } else {
                 res.send(401, "No tienes autorización")
             }
