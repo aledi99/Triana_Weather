@@ -50,14 +50,11 @@ La distribución del trabajo de este proyecto se ha plasmado en este documento:
 | Tipo/URL    | POST => `/api/register`            |
 | ----------- |:----------------------------------:|
 | Comentarios | Petición para registrar un usuario |
-| ----------- |:----------------------------------:|
 | Cabeceras   | Content-Type: application/json     |
-| ----------- |:----------------------------------:|
 | Cuerpo      | Datos de un nuevo usuario          |
-| ----------- |:----------------------------------:|
 | Respuesta/s | 201 Created                        |
 |             | Devuelve los datos del usuario     |
-| ----------- |:----------------------------------:|
+
 
 #### Cuerpo y respuesta del Endpoint
 * Cuperpo:
