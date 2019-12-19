@@ -73,7 +73,8 @@ module.exports = {
             .catch(err => res.status(500).send(err.message));
     },
     getDataFromToday: (req, res) => {
-        MeteorologicData.find({ "registered_at": Date.now })
+        let startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        MeteorologicData.find({ "registered_at": {$gte: startOfToday}})
             .populate({
                 path:'station',
                 model: 'MeteorologicStation',
