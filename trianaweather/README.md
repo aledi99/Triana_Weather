@@ -34,5 +34,43 @@ La distribución del trabajo de este proyecto se ha plasmado en este documento:
 
 
 #### Usar la ApiRest:
-* Importar el proyecto en VSC abrir un nuevo terminal y ejecutar `npm run start`
+* Tener mongo disponible en local e indicar su puerto en las variables de entorno del proyecto en un archivo `.env` con el nombre de `MONGODB_URI`
+* Importar el proyecto en VSC abrir un nuevo terminal y ejecutar `npm start`
 * Se arranca en el puerto `localhost:3000`
+
+***
+
+
+## Endpoints
+
+***
+
+### Registrarse en el Api Rest
+
+| Tipo/URL    | POST => `/api/register`            |
+| ----------- |:----------------------------------:|
+| Comentarios | Petición para registrar un usuario |
+| ----------- |:----------------------------------:|
+| Cabeceras   | Content-Type: application/json     |
+| ----------- |:----------------------------------:|
+| Cuerpo      | Datos de un nuevo usuario          |
+| ----------- |:----------------------------------:|
+| Respuesta/s | 201 Created                        |
+|             | Devuelve los datos del usuario     |
+| ----------- |:----------------------------------:|
+
+#### Cuerpo y respuesta del Endpoint
+* Cuperpo:
+{
+    "username": "usuario",
+    "email": "usuario@email.com",
+    "fullname": "usernameFullname",
+    "password": "1234"
+}
+* Respuesta:
+{
+    "id": "5dfb254d3f50834e9c920213",
+    "fullname": "usernameFullname",
+    "username": "usuario",
+    "email": "usuario@email.com"
+}
