@@ -104,7 +104,7 @@ La distribución del trabajo de este proyecto se ha plasmado en este documento:
 
 ***
 
-### Login en el Api Rest
+### Obetener todos los usuarios
 
 | Tipo/URL    | GET => `/api/users` |
 | ----------- |:----------------------------------:|
@@ -411,7 +411,7 @@ La distribución del trabajo de este proyecto se ha plasmado en este documento:
 
 ***
 
-### Obtener Datos Metereologicos especificos
+### Obtener Datos Metereologicos específicos
 
 | Tipo/URL    | GET  => `/api/weather/:id` |
 | ----------- |:----------------------------------:|
