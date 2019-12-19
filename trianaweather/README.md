@@ -21,6 +21,7 @@ Proyecto sobre la gestión de datos meteorologicos.
 * JavaScript 6
 * [NodeJs](https://nodejs.org/en/)
 * [Mongoose](https://mongoosejs.com/)
+* [npm](https://www.npmjs.com/)
 * IDE: [Visual Studio Code](https://code.visualstudio.com/) necesario para arrancar la api rest (se debe arrancar desde el IDE)
 
 ***
@@ -28,6 +29,7 @@ Proyecto sobre la gestión de datos meteorologicos.
 
 ### Distribución del trabajo
 La distribución del trabajo de este proyecto se ha plasmado en este documento:
+
 * [Ver documento](https://docs.google.com/spreadsheets/d/1j3si2t2xRK7bHqjTtvCvvOnNkA03Dm6Ygwtb4CW-mvQ/edit?usp=sharing "Documento de la distribución del trabajo")
 
 ***
@@ -714,4 +716,24 @@ La distribución del trabajo de este proyecto se ha plasmado en este documento:
         "__v": 0
     }
 ]
+```
+
+***
+
+### Obtener todos los Datos Metereologicos de hoy de una estación
+
+| Tipo/URL    | GET  => `api/stations/:id/summary/today` |
+| ----------- |:----------------------------------:|
+| Comentarios | Petición para obtener un resumen de hoy datos meteorológicos de una estación |
+| Cabeceras   | Content-Type: application/json con Token JWT y rol de USER |
+| Parámetros  | ID de la estación |
+| Respuesta/s | 200 Ok => Devuelve lista de datos meteorológicos y fecha, así como la estación |
+
+
+#### Respuesta del Endpoint
+* Respuesta:
+```json
+{
+    
+}
 ```
