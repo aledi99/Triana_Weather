@@ -14,7 +14,7 @@ module.exports = {
         });
         station.save()
             .then(s => s.populate('registed_by', { fullname: 1, email: 1 }).execPopulate())
-            .then(s => s.populate('maintenanced_by', { fullname: 1, email: 1 }).execPopulate())
+            .then(s => s.populate('maitenanced_by', { fullname: 1, email: 1 }).execPopulate())
             .then(s => res.status(201).json(s))
             .catch(err => res.send(500).json(err.message));
     },
@@ -48,17 +48,9 @@ module.exports = {
                 else {
                     MeteorologicStation.findById(station._id)
                         .exec()
-                        .then(x => x.populate('registed_by').execPopulate())
-                        .then(x => x.populate('maitenanced_by').execPopulate())
-                        .then(x => res.status(200).json({
-                            latitude: x.latitude,
-                            longitude: x.longitude,
-                            name: x.name,
-                            registed_name: x.registed_by.fullname,
-                            registed_email: x.registed_by.email,
-                            maitenanced_name: x.maitenanced_by.fullname,
-                            maitenanced_email: x.maitenanced_by.email
-                        }))
+                        .then(x => x.populate('registed_by', { fullname: 1, email: 1 }).execPopulate())
+                        .then(x => x.populate('maitenanced_by', { fullname: 1, email: 1 }).execPopulate())
+                        .then(x => res.status(200).json(x))
                         .catch(err => res.send(500).json(err.message))
                 }
             });
