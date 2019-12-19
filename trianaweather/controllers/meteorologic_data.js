@@ -101,6 +101,47 @@ module.exports = {
             .exec()
             .then(d => res.status(200).json(d))
             .catch(err => res.status(500).send(err.message));
+    },
+    getSummary: async (req, res) => {
+        console.log(req.params.id)
+        await MeteorologicData.aggregate([
+        {
+        "$match": {
+            station: {$in: mongoose.Types.ObjectId(req.params.id)},
+            
+        },
+        "$match": {
+            registed_at: {$gte: startOfToday} 
+        }
+        /* , 
+        "$group": {
+            _id: '$id',
+            maxTemperatureAmbient: {$max: '$temperature_ambient'},
+            minTemperatureAmbient: {$min: '$temperature_ambient'},
+            averageTemperatureAmbient: {$avg: '$temperature_ambient'},
+            maxTemperatureGround: {$max: '$temperature_ground'},
+            minTemperatureGround: {$min: '$temperature_ground'},
+            averageTemperatureGround: {$avg: '$temperature_ground'},
+            totalRain: {$sum: '$rain'},
+            averageHumidity: {$avg: '$humidity'},
+            averageAirQuality: {$avg: '$air_quality'}                
+        } */}])
+        /* .group(
+            {
+                _id: 'hola',
+                maxTemperatureAmbient: {$max: '$temperature_ambient'},
+                minTemperatureAmbient: {$min: '$temperature_ambient'},
+                averageTemperatureAmbient: {$avg: '$temperature_ambient'},
+                maxTemperatureGround: {$max: '$temperature_ground'},
+                minTemperatureGround: {$min: '$temperature_ground'},
+                averageTemperatureGround: {$avg: '$temperature_ground'},
+                totalRain: {$sum: '$rain'},
+                averageHumidity: {$avg: '$humidity'},
+                averageAirQuality: {$avg: '$air_quality'}                
+                }) */
+                .exec()
+                .then(d => res.status(200).json(d))
+                .catch(error => {res.status(500).send(err.message)});
     }
 
 }
