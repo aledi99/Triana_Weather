@@ -16,6 +16,9 @@ const user_routes = require('./routes/users')
 const station_routes = require('./routes/station')
 const meteorologic_data_routes = require('./routes/meteorologic_data')
 
+//Insertar datos de ejemplo descomentar y ejecutar para insertarlos
+//require('./example_data');
+
 require('dotenv').config();
 
 const mongoose = require('mongoose');
