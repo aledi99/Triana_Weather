@@ -4,7 +4,9 @@ const MeteorologicStation = require('../models/meteorologic_station');
 
 module.exports = {
 
-    newStation: (req, res) => {
+    newStation: async (req, res) => {
+        let id;
+
         let station = new MeteorologicStation({
             latitude: req.body.latitude,
             longitude: req.body.longitude,
@@ -12,12 +14,21 @@ module.exports = {
             registed_by: req.user._id,
             maitenanced_by: req.user._id
         });
+
         console.log(station);
-        station.save()
+
+        await station.save()
             .then(s => s.populate('registed_by', { fullname: 1, email: 1 }).execPopulate())
             .then(s => s.populate('maitenanced_by', { fullname: 1, email: 1 }).execPopulate())
+            .then(s => {
+                id = s._id
+                return s
+            })
             .then(s => res.status(201).json(s))
             .catch(err => res.send(500).json(err.message));
+
+        await User.findByIdAndUpdate(req.user._id, {$push: {stations_maitenancing: id}});
+        await User.findByIdAndUpdate(req.user._id, {$push: {stations_registered: id}});
     },
     getStation: (req, res) => {
         MeteorologicStation.find()
