@@ -60,7 +60,7 @@ let controller = {
         try {
             let result = null;
             if (req.user.roles == "ADMIN") {
-                result = await User.find().exec();
+                result = await User.find({}, {_id: 1, username: 1, roles: 1}).exec();
             }else{
                 res.send(401, "No tienes autorización")
             }

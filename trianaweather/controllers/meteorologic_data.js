@@ -8,7 +8,8 @@ module.exports = {
             rain: req.body.rain,
             wind_speed: req.body.wind_speed,
             wind_direction: req.body.wind_direction,
-            temperature: req.body.temperature,
+            temperature_ambient: req.body.temperature_ambient,
+            temperature_graund: req.body.temperature_graund,
             humidity: req.body.humidity,
             air_quality: req.body.air_quality,
             pressure: req.body.pressure,
@@ -29,11 +30,12 @@ module.exports = {
     getDataById: (req, res) => {
         MeteorologicData.findById(req.params.id)
             .exec()
-            .then(d => d.populate({path:'station',
+            .then(d => d.populate({
+                path:'station',
                 model: 'MeteorologicStation',
                 populate: {
                     path: 'registed_by maitenanced_by',
-                    path: 'User',
+                    model: 'User',
                     select: 'fullname email'
             }}).execPopulate())
             .then(d => res.status(200).json(d))
@@ -72,7 +74,8 @@ module.exports = {
     },
     getDataFromToday: (req, res) => {
         MeteorologicData.find({ "registered_at": Date.now })
-            .populate({path:'station',
+            .populate({
+                path:'station',
                 model: 'MeteorologicStation',
                 populate: {
                     path: 'registed_by maitenanced_by',

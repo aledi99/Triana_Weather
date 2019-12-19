@@ -12,6 +12,7 @@ module.exports = {
             registed_by: req.user._id,
             maitenanced_by: req.user._id
         });
+        console.log(station);
         station.save()
             .then(s => s.populate('registed_by', { fullname: 1, email: 1 }).execPopulate())
             .then(s => s.populate('maitenanced_by', { fullname: 1, email: 1 }).execPopulate())
@@ -21,7 +22,7 @@ module.exports = {
     getStation: (req, res) => {
         MeteorologicStation.find()
             .populate('registed_by', { fullname: 1, email: 1 })
-            .populate('maintenanced_by', { fullname: 1, email: 1 })
+            .populate('maitenanced_by', { fullname: 1, email: 1 })
             .exec()
             .then(result => res.status(200).json(result))
             .catch(error => res.status(500).send(error.message));
