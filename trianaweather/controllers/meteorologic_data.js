@@ -1,6 +1,9 @@
 'use strict'
 
 const MeteorologicData = require('../models/meteorologic_data');
+const mongoose = require('mongoose');
+var now = new Date();
+var startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
 module.exports = {
     nuevaData: async (req, res) => {
