@@ -46,7 +46,7 @@ La distribución del trabajo de este proyecto se ha plasmado en este documento:
 
 
 #### Usar la Api Rest:
-* Tener mongo disponible en local e indicar su puerto en las variables de entorno del proyecto en un archivo `.env` con el nombre de `MONGODB_URI`
+* Tener mongo disponible en local e indicar las variables de entorno del proyecto en un archivo `.env`
 * Importar el proyecto en VSC abrir un nuevo terminal y ejecutar `npm start`
 * Se arranca en el puerto `localhost:3000`
 
@@ -60,7 +60,7 @@ La distribución del trabajo de este proyecto se ha plasmado en este documento:
 | Tipo/URL    | POST => `/api/register`            |
 | ----------- |:----------------------------------:|
 | Comentarios | Petición para registrar un usuario |
-| Cabeceras   | Content-Type: application/json     |
+| Cabeceras   | `Content-Type: application/json`   |
 | Cuerpo      | Datos de un nuevo usuario          |
 | Respuesta/s | 201 Created => Devuelve los datos del usuario |
 
@@ -92,7 +92,7 @@ La distribución del trabajo de este proyecto se ha plasmado en este documento:
 | Tipo/URL    | POST => `/api/login` |
 | ----------- |:----------------------------------:|
 | Comentarios | Petición para loguear un usuario |
-| Cabeceras   | Content-Type: application/json     |
+| Cabeceras   | `Content-Type: application/json` |
 | Cuerpo      | Username y contraseña |
 | Respuesta/s | 200 Ok => Devuelve username, role y JWT |
 
@@ -121,7 +121,7 @@ La distribución del trabajo de este proyecto se ha plasmado en este documento:
 | Tipo/URL    | GET => `/api/users` |
 | ----------- |:----------------------------------:|
 | Comentarios | Petición obtener todos los usuarios |
-| Cabeceras   | Content-Type: application/json con Token JWT y rol de ADMIN |
+| Cabeceras   | `Content-Type: application/json con Token JWT y rol de ADMIN` |
 | Respuesta/s | 200 Ok => Lista con todos los usuarios registrados |
 
 
@@ -154,7 +154,7 @@ La distribución del trabajo de este proyecto se ha plasmado en este documento:
 | Tipo/URL    | GET => `/api/stations` |
 | ----------- |:----------------------------------:|
 | Comentarios | Petición obtener todas las estaciones |
-| Cabeceras   | Content-Type: application/json con Token JWT y rol de MANAGER |
+| Cabeceras   | `Content-Type: application/json con Token JWT y rol de MANAGER` |
 | Respuesta/s | 200 Ok => Devuelve lista con todas las estaciones registradas |
 
 
@@ -226,7 +226,7 @@ La distribución del trabajo de este proyecto se ha plasmado en este documento:
 | Tipo/URL    | GET => `/api/stations/:id` |
 | ----------- |:----------------------------------:|
 | Comentarios | Petición para obtener los datos de una estación |
-| Cabeceras   | Content-Type: application/json con Token JWT y rol de MANAGER |
+| Cabeceras   | `Content-Type: application/json con Token JWT y rol de MANAGER` |
 | Parametros  | ID de la estación |
 | Respuesta/s | 200 Ok => Devuelve datos de la estación, si existe |
 
@@ -261,7 +261,7 @@ La distribución del trabajo de este proyecto se ha plasmado en este documento:
 | Tipo/URL    | POST => `/api/stations` |
 | ----------- |:----------------------------------:|
 | Comentarios | Crear una nueva estación |
-| Cabeceras   | Content-Type: application/json con Token JWT y rol de MANAGER |
+| Cabeceras   | `Content-Type: application/json con Token JWT y rol de MANAGER` |
 | Cuerpo      | Datos de una estación |
 | Respuesta/s | 201 Created => Devuelve los datos de la estación creada |
 
@@ -304,7 +304,7 @@ La distribución del trabajo de este proyecto se ha plasmado en este documento:
 | Tipo/URL    | PUT => `api/stations/:id` |
 | ----------- |:----------------------------------:|
 | Comentarios | Petición para modificar los datos de una estación |
-| Cabeceras   | Content-Type: application/json con Token JWT y rol de MANAGER |
+| Cabeceras   | `Content-Type: application/json con Token JWT y rol de MANAGER` |
 | Cuerpo      | Nuevos datos de la estación |
 | Parámetros  | ID de la estación |
 | Respuesta/s | 200 Ok => Devuelve los datos de la estación modificada |
@@ -348,7 +348,7 @@ La distribución del trabajo de este proyecto se ha plasmado en este documento:
 | Tipo/URL    | DELETE  => `api/stations/:id` |
 | ----------- |:----------------------------------:|
 | Comentarios | Petición eliminar los datos de una estación |
-| Cabeceras   | Content-Type: application/json con Token JWT y rol de MANAGER |
+| Cabeceras   | `Content-Type: application/json con Token JWT y rol de MANAGER` |
 | Parámetros  | ID de la estación |
 | Respuesta/s | 204 No Content |
 
@@ -366,7 +366,7 @@ La distribución del trabajo de este proyecto se ha plasmado en este documento:
 | Tipo/URL    | POST  => `/api/weather` |
 | ----------- |:----------------------------------:|
 | Comentarios | Registra una nueva entrada de datos meteorológicos de una estación |
-| Cabeceras   | Content-Type: application/json con Token JWT y rol de MANAGER |
+| Cabeceras   | `Content-Type: application/json con Token JWT y rol de MANAGER` |
 | Cuerpo      | Cata de datos meteorológicos (todos) y Estación meteorológica |
 | Respuesta/s | 201 Created => Devuelve todos los datos de la nueva toma registrada, incluyendo todos los datos de la estación |
 
@@ -428,7 +428,7 @@ La distribución del trabajo de este proyecto se ha plasmado en este documento:
 | Tipo/URL    | GET  => `/api/weather/:id` |
 | ----------- |:----------------------------------:|
 | Comentarios | Petición para obtener los datos meteorológicos en base a su ID |
-| Cabeceras   | Content-Type: application/json con Token JWT y rol de USER |
+| Cabeceras   | `Content-Type: application/json con Token JWT y rol de USER` |
 | Parámetros  | ID de la cata de datos meteorológicos |
 | Respuesta/s | 200 Ok => Devuelve datos meteorológicos, fecha, la estación |
 
@@ -476,7 +476,7 @@ La distribución del trabajo de este proyecto se ha plasmado en este documento:
 | Tipo/URL    | GET  => `/api/stations/:id/weather/` |
 | ----------- |:----------------------------------:|
 | Comentarios | Petición para obtener los datos meteorológicos de una estación |
-| Cabeceras   | Content-Type: application/json con Token JWT y rol de USER |
+| Cabeceras   | `Content-Type: application/json con Token JWT y rol de USER` |
 | Parámetros  | ID de la estación |
 | Respuesta/s | 200 Ok => Devuelve lista de datos meteorológicos  y fecha, así como la estación |
 
@@ -541,7 +541,7 @@ La distribución del trabajo de este proyecto se ha plasmado en este documento:
 | Tipo/URL    | GET  => `/api/weather/today` |
 | ----------- |:----------------------------------:|
 | Comentarios | Petición para obtener todos los datos meteorológicos de todas las estaciones para el día de hoy |
-| Cabeceras   | Content-Type: application/json con Token JWT y rol de USER |
+| Cabeceras   | `Content-Type: application/json con Token JWT y rol de USER` |
 | Respuesta/s | 200 Ok => Devuelve lista de datos meteorológicos y fecha, así como la estación |
 
 
@@ -605,7 +605,7 @@ La distribución del trabajo de este proyecto se ha plasmado en este documento:
 | Tipo/URL    | GET  => `/api/stations/:id/weather/from/:from/to/:to` |
 | ----------- |:----------------------------------:|
 | Comentarios | Petición para obtener los datos meteorológicos de una estación para un rango de fechas |
-| Cabeceras   | Content-Type: application/json con Token JWT y rol de USER |
+| Cabeceras   | `Content-Type: application/json con Token JWT y rol de USER` |
 | Parámetros  | ID de la estación, FROM fecha desde, TO fecha hasta. |
 | Respuesta/s | 200 Ok => Devuelve lista de datos meteorológicos y fecha, así como la estación |
 
@@ -670,7 +670,7 @@ La distribución del trabajo de este proyecto se ha plasmado en este documento:
 | Tipo/URL    | GET  => `api/weather/from/:from/to/:to` |
 | ----------- |:----------------------------------:|
 | Comentarios | Petición para obtener los datos meteorológicos de una estación para un rango de fechas |
-| Cabeceras   | Content-Type: application/json con Token JWT y rol de USER |
+| Cabeceras   | `Content-Type: application/json con Token JWT y rol de USER` |
 | Parámetros  | FROM fecha desde, TO fecha hasta. |
 | Respuesta/s | 200 Ok => Devuelve lista de datos meteorológicos y fecha, así como la estación |
 
