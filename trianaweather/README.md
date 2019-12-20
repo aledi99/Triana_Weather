@@ -35,7 +35,17 @@ La distribución del trabajo de este proyecto se ha plasmado en este documento:
 ***
 
 
-#### Usar la ApiRest:
+#### Variables de entorno necesarias en un archivo .env para el Api Rest:
+* `MONGODB_URI` url de acceso a mongodb
+* `JWT_SECRET` string que es el secreto del JWT
+* `BCRYPT_ROUNDS` 12 por ejemplo
+* `JWT_LIFETIME` duración del JWT indicada en segundos
+* `JWT_ALGORITHM` HS256 por ejemplo
+
+***
+
+
+#### Usar la Api Rest:
 * Tener mongo disponible en local e indicar su puerto en las variables de entorno del proyecto en un archivo `.env` con el nombre de `MONGODB_URI`
 * Importar el proyecto en VSC abrir un nuevo terminal y ejecutar `npm start`
 * Se arranca en el puerto `localhost:3000`
@@ -716,24 +726,4 @@ La distribución del trabajo de este proyecto se ha plasmado en este documento:
         "__v": 0
     }
 ]
-```
-
-***
-
-### Obtener todos los Datos Metereologicos de hoy de una estación
-
-| Tipo/URL    | GET  => `api/stations/:id/summary/today` |
-| ----------- |:----------------------------------:|
-| Comentarios | Petición para obtener un resumen de hoy datos meteorológicos de una estación |
-| Cabeceras   | Content-Type: application/json con Token JWT y rol de USER |
-| Parámetros  | ID de la estación |
-| Respuesta/s | 200 Ok => Devuelve lista de datos meteorológicos y fecha, así como la estación |
-
-
-#### Respuesta del Endpoint
-* Respuesta:
-```json
-{
-    
-}
 ```

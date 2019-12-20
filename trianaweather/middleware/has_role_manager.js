@@ -1,7 +1,5 @@
 'use strict'
 
-const error_types = require('../controllers/error_types');
-
 let middlewares = {
     
     ensureRoleManager: (req,res,next)=>{

@@ -17,7 +17,7 @@ const station_routes = require('./routes/station')
 const meteorologic_data_routes = require('./routes/meteorologic_data')
 
 //Insertar datos de ejemplo descomentar y ejecutar para insertarlos
-//require('./example_data');
+require('./example_data');
 
 require('dotenv').config();
 

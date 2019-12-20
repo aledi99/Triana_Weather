@@ -101,7 +101,7 @@ module.exports = {
             .exec()
             .then(d => res.status(200).json(d))
             .catch(err => res.status(500).send(err.message));
-    },
+    }/* ,
     getSummary: async (req, res) => {
         console.log(req.params.id)
         await MeteorologicData.aggregate([
@@ -113,7 +113,7 @@ module.exports = {
         "$match": {
             registed_at: {$gte: startOfToday} 
         }
-        /* , 
+         , 
         "$group": {
             _id: '$id',
             maxTemperatureAmbient: {$max: '$temperature_ambient'},
@@ -125,8 +125,8 @@ module.exports = {
             totalRain: {$sum: '$rain'},
             averageHumidity: {$avg: '$humidity'},
             averageAirQuality: {$avg: '$air_quality'}                
-        } */}])
-        /* .group(
+        } 
+         .group(
             {
                 _id: 'hola',
                 maxTemperatureAmbient: {$max: '$temperature_ambient'},
@@ -138,10 +138,10 @@ module.exports = {
                 totalRain: {$sum: '$rain'},
                 averageHumidity: {$avg: '$humidity'},
                 averageAirQuality: {$avg: '$air_quality'}                
-                }) */
+                }) 
                 .exec()
                 .then(d => res.status(200).json(d))
                 .catch(error => {res.status(500).send(err.message)});
-    }
+    } */
 
 }
